@@ -35,4 +35,4 @@ kubectl apply -f <filename> -n default
 ```
 Ensure secret yaml applied before deploy file.
 
-For testing, after deploying all the files and deploying the pod, run the below script at /test/functional_test.sh.
+For testing, after deploying all the files and deploying the pod, run the below script at /test/functional_test.sh from any node of the cluster.
