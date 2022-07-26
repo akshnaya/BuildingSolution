@@ -1,0 +1,44 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    ost-component: example-app
+  name: example-app
+spec:
+  progressDeadlineSeconds: 120
+  replicas: 1
+  selector:
+    matchLabels:
+      ost-component: example-app
+  template:
+    metadata:
+      labels:
+        ost-component: example-app
+        occloud.com/open-network-policy: allow
+      name: example-app
+    spec:
+      containers:
+        - command:
+            - ./example-app.py
+          image: phx.ocir.io/oraclegbudevcorp/cnedev-shared/baseimages/user/akshnaya/example-app 
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          name: example-app
+          resources:
+            limits:
+              cpu: 400m
+              memory: 1200Mi
+          volumeMounts:
+            - name: secret-app
+              mountPath: /example-app-secret
+      restartPolicy: Always
+      securityContext:
+        runAsUser: 1000
+      volumes:
+        - name: secret-app
+          secret:
+            secretName: example-app-secret

@@ -1,0 +1,51 @@
+swagger: '2.0'
+info: {title: Example App API, version: '1.0'}
+consumes: [application/json]
+produces: [application/json]
+paths:
+  /appdetails:
+    get:
+      description: Application Data
+      operationId: example-app.getappdetails
+      responses:
+        '200':
+          description: Application Data Details
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+        '500': {description: Unhealthy Status}
+    post:
+      description: Start a new compute image build
+      operationId: example-app.postappdetails
+      parameters:
+        - name: param
+          in: body
+          description: Build to be started
+          required: true
+          schema:
+            $ref: '#/definitions/app'
+      responses:
+        '200':
+          description: Successfully posted the details
+          schema:
+            $ref: '#/definitions/body'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/message'
+        '500':
+          description: Failure
+          schema:
+            $ref: '#/definitions/message'
+definitions:
+  app:
+    description: details in the form of json
+    properties:
+      parameters:
+        type: object
+  message:
+    type: string
+  body:
+    type: object
