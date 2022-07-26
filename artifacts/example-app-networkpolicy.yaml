@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  labels:
+    occloud.com/project: example-app
+  name: open-network-policy
+  namespace: default
+spec:
+  ingress:
+  - {}
+  podSelector:
+    matchLabels:
+      occloud.com/open-network-policy: allow
+  policyTypes:
+  - Ingress
