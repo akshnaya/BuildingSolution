@@ -1,7 +1,7 @@
 # BuildingSolution
 
 Note: Using oracle slim image as base image for the docker along with python3 packages.
-Also using OCI artifactory path to stor ethe built docker image, from which deploy file in kubernetes pulls.
+Also using OCI artifactory path to store the built docker image, from which deploy file in kubernetes pulls.
 This solution will work on kubernetes cluster deployed on OCI(Oracle cloud Infrastructure)
 
 In this project, A basic application exposing 2 simple REST API endpoints (POST, GET) is implemented.
@@ -28,5 +28,11 @@ The below command will build and push the example-app image to the repository(OC
 ```
 make build
 ```
+
+To deploy all the files in artifacts path, execute:
+```
+kubectl apply -f <filename> -n default
+```
+Ensure secret yaml applied before deploy file.
 
 For testing, after deploying all the files and deploying the pod, run the below script at /test/functional_test.sh.
