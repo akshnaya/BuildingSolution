@@ -15,6 +15,10 @@ import Exception
 app_list = []
 
 def login():
+    """
+        Get the username from the mounted secret
+        Raise Exception if username is not "Akshata"
+    ""
     with open(/example-app-secret/username) as key_file:
         username = key_file.read().strip()
     if username is not "Akshata":
